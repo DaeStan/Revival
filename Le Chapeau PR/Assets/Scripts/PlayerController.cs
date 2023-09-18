@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     [Header("Components")]
     public Rigidbody rig;
     public Player photonPlayer;
+    public Renderer playerRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -70,16 +71,25 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         photonPlayer = player;
         id = player.ActorNumber;
         GameManager.instance.players[id - 1] = this;
+        playerRenderer = GetComponent<MeshRenderer>();
+
         // give the first player the hat
+        if (id == 1)
+        {
+            GameManager.instance.GiveHat(id, true);
+            playerRenderer.enabled = true;
+        }
 
         // if this isn't our local player, disable physics as that's
         // controlled by the user and synced to all other clients
         if (!photonView.IsMine)
+        {
             rig.isKinematic = true;
+            playerRenderer.enabled = true;
+        }
 
-        // give the first player the hat
-        if (id == 1)
-            GameManager.instance.GiveHat(id, true);
+        else
+            playerRenderer.enabled = false;
     }
 
     // sets the player's hat active or not

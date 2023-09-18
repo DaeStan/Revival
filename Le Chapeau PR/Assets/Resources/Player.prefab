@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1881850464346421869}
   m_Layer: 0
   m_Name: Visible
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,6 +163,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Invisible
       objectReference: {fileID: 0}
+    - target: {fileID: 2866621852552652557, guid: 5606463d048f5b443929ef6cf8e2043a, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -252,11 +256,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  moveSpeed: 5
-  jumpForce: 7
+  moveSpeed: 12
+  jumpForce: 0
   hatObject: {fileID: 4145531526657490720}
   curHatTime: 0
   rig: {fileID: 7571178980156107584}
+  playerRenderer: {fileID: 5001630503181966711}
 --- !u!114 &8240573321914792992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,5 +305,10 @@ MonoBehaviour:
 --- !u!4 &4519195669363473132 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5606463d048f5b443929ef6cf8e2043a, type: 3}
+  m_PrefabInstance: {fileID: 4124683701124193543}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5001630503181966711 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -264430861247414160, guid: 5606463d048f5b443929ef6cf8e2043a, type: 3}
   m_PrefabInstance: {fileID: 4124683701124193543}
   m_PrefabAsset: {fileID: 0}

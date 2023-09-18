@@ -52,8 +52,7 @@ public class GameUI : MonoBehaviour
         for (int x = 0; x < GameManager.instance.players.Length; ++x)
         {
             if (GameManager.instance.players[x] != null)
-                playerContainers[x].hatTimeSlider.value = GameManager.instance.players[x]
-               .curHatTime;
+                playerContainers[x].hatTimeSlider.value = GameManager.instance.players[x].curHatTime;
         }
     }
 
