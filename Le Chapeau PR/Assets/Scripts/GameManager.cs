@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-//using Photon.Realtime;
+using Photon.Realtime;
 using System.Linq;
 
 public class GameManager : MonoBehaviourPunCallbacks
@@ -94,20 +94,16 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         gameEnded = true;
         PlayerController player = GetPlayer(playerId);
+
         // set the UI to show who's won
-        Invoke("GoBackToMenu", 8.0f);
         GameUI.instance.SetWinText(player.photonPlayer.NickName);
+
+        Invoke("GoBackToMenu", 8.0f);
     }
 
     void GoBackToMenu()
     {
         PhotonNetwork.LeaveRoom();
         NetworkManager.instance.ChangeScene("Menu");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -8,37 +8,23 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
 {
     [HideInInspector]
     public int id;
+
     [Header("Info")]
     public float moveSpeed;
     public float jumpForce;
     public GameObject hatObject;
+
     [HideInInspector]
     public float curHatTime;
+
     [Header("Components")]
     public Rigidbody rig;
     public Player photonPlayer;
     public Renderer playerRenderer;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
-        // the host will check if the player has won
-        if (PhotonNetwork.IsMasterClient)
-        {
-            if (curHatTime >= GameManager.instance.timeToWin && !GameManager.instance.gameEnded)
-            {
-                GameManager.instance.gameEnded = true;
-                GameManager.instance.photonView.RPC("WinGame", RpcTarget.All, id);
-            }
-        }
-
-
         if (photonView.IsMine)
         {
             Move();
@@ -47,6 +33,16 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             // track the amount of time we're wearing the hat
             if (hatObject.activeInHierarchy)
                 curHatTime += Time.deltaTime;
+        }
+
+        // the host will check if the player has won
+        if (PhotonNetwork.IsMasterClient)
+        {
+            if (curHatTime >= GameManager.instance.timeToWin && !GameManager.instance.gameEnded)
+            {
+                GameManager.instance.gameEnded = true;
+                GameManager.instance.photonView.RPC("WinGame", RpcTarget.All, id);
+            }
         }
     }
 
@@ -70,6 +66,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     {
         photonPlayer = player;
         id = player.ActorNumber;
+
         GameManager.instance.players[id - 1] = this;
         playerRenderer = GetComponent<MeshRenderer>();
 

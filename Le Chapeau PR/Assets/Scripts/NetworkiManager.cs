@@ -50,10 +50,4 @@
         {
             Debug.Log("Connected to master server");
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
     }
